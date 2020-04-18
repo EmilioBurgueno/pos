@@ -8,6 +8,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { ItemAddPageModule } from './modals/item-add/item-add.module';
+import { ItemEditPageModule } from './modals/item-edit/item-edit.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +21,11 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    FormsModule, ReactiveFormsModule,
+    ItemAddPageModule, ItemEditPageModule
   ],
   providers: [
     StatusBar,
