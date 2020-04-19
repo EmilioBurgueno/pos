@@ -18,7 +18,7 @@ export class TipsPage implements OnInit {
       header: 'Add your tip!',
       inputs: [
         {
-          name: 'tipu',
+          name: 'tip',
           placeholder: '$ USD',
           type: 'number',
           min: 0
@@ -35,9 +35,14 @@ export class TipsPage implements OnInit {
         {
           text: 'OK',
           handler: data => {
-            console.log('Tip added');
+            if (data.tip > 0) {
+              console.log('Tip added');
+            } else {
+              return false
+            }
+            
           }
-        },
+        }
       ]
     });
     await alert.present();

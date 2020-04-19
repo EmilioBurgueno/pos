@@ -25,6 +25,19 @@ export class ItemService {
     )
   }
 
+  getAvItems() {
+    return this.afs.collection('item').snapshotChanges().pipe(
+      map(docs => docs.map(doc => {
+        const item = doc.payload.doc.data() as any;
+        const id = doc.payload.doc.id;
+
+        if (item.status === "available") {
+          return { id, ...item } as Item;
+        }
+      }))
+    )
+  }
+
   getItem(itemId: string) {
     return this.afs.doc(`item/${itemId}`).snapshotChanges().pipe(
       map(doc => {
