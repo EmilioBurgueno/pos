@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./items/items.module').then( m => m.ItemsPageModule)
   },
   {
+    path: 'menu/transactions/:id',
+    loadChildren: () => import('./transaction-desc/transaction-desc.module').then( m => m.TransactionDescPageModule)
+  },
+  {
     path: 'menu/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
@@ -33,19 +37,15 @@ const routes: Routes = [
   },
   {
     path: 'charge',
-    loadChildren: () => import('./modals/charge/charge.module').then( m => m.ChargePageModule)
-  },
-  {
-    path: 'transaction-desc',
-    loadChildren: () => import('./modals/transaction-desc/transaction-desc.module').then( m => m.TransactionDescPageModule)
+    loadChildren: () => import('./charge/charge.module').then( m => m.ChargePageModule)
   },
   {
     path: 'tips',
-    loadChildren: () => import('./modals/tips/tips.module').then( m => m.TipsPageModule)
+    loadChildren: () => import('./tips/tips.module').then( m => m.TipsPageModule)
   },
   {
     path: 'co-done',
-    loadChildren: () => import('./modals/co-done/co-done.module').then( m => m.CoDonePageModule)
+    loadChildren: () => import('./co-done/co-done.module').then( m => m.CoDonePageModule)
   }
 ];
 

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/models/item.model';
 import { Transaction } from 'src/models/transaction.model';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
-import { ItemService } from '../services/item.service';
-import { TransactionDescPage } from '../modals/transaction-desc/transaction-desc.page';
 import { TransactionService } from '../services/transaction.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-transactions',
@@ -15,53 +13,73 @@ export class TransactionsPage implements OnInit {
 
   today = Date.now();
 
-  time: any = new Date().toISOString();
+  date = new Date();
+  options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: true
+  };
+  time = new Intl.DateTimeFormat('en-US', this.options).format(this.date);
+
+  days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  day = this.days[ this.date.getDay() ];
 
   item: Item;
 
-  transaction: Transaction;
+  transactions: Transaction[] = [
+    {
+      id: '001',
+      customEntries: 0.22,
+      items: [
+        {
+          id: '002',
+          name: 'Test',
+          price: 10,
+          status: 'available'
+        }
+      ],
+      totalQuantity: 1,
+      subtotal: 10,
+      tax: 1.25,
+      tips: 0,
+      total: 11.25,
+      date: this.today
+    },
+    {
+      id: '001',
+      customEntries: 0.22,
+      items: [
+        {
+          id: '002',
+          name: 'Test',
+          price: 10,
+          status: 'available'
+        }
+      ],
+      totalQuantity: 1,
+      subtotal: 10,
+      tax: 1.25,
+      tips: 0,
+      total: 11.25,
+      date: this.today
+    }
+  ];
 
-  constructor(private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private navCtrl: NavController,
-              private transactionService: TransactionService) { }
+  constructor(private navCtrl: NavController,
+    private transactionService: TransactionService) { }
 
   ngOnInit() {
   }
 
-  async openModal(transId) {
-    const modal = await this.modalCtrl.create({
-      component: TransactionDescPage,
-      componentProps: {
-        tID: transId
-      }
+  goToDesc(transId: String) {
+    this.navCtrl.navigateForward(['menu', 'transactions', transId])
+  }
+
+  getTrans() {
+    this.transactionService.getTransactions().subscribe(transacs => {
+      this.transactions = transacs;
     });
-    return await modal.present();
   }
 
-  createTransaction(): void{
-    if(true) {
-      //const desc = this.addnoteForm.controls.description.value;
-
-      const transaction = {
-        customEntries: 0,
-        items: '',
-        totalQuantity: 0,
-        subtotal: 0,
-        tax: 0.0975,
-        tips: 0,
-        total: 0,
-        date: ''
-      };
-
-      // this.transactionService.createTransaction(transaction).then(() => {
-      //   //this.addAlert()
-      // }).catch((error) => {
-      //   console.log(error)
-      // });
-    }
-    else{
-      console.log('Error')
-    }
-  }
 }

@@ -6,50 +6,52 @@ ion-header {
     z-index: 10;
 }
 
-.charge-toolbar {
+#charge-toolbar {
     height: 60px;
-}
-
-ion-button {
-    height: 50px;
-    font-size: 18px;
+    ion-button {
+        height: 50px;
+        font-size: 18px;
+    }
 }
 
 ion-segment {
     height: 10%;
 }
 
-.keypadgrid {
-    box-sizing: border-box;
+#keypad-grid {
     margin: 0;
     padding: 0;
     height: 90%;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    .button-col {
+    ion-row.keypad-row {
         margin: 0;
         padding: 0;
         height: 100%;
-        font-size: 30px;
+        .input-col {
+            margin: 0;
+            padding: 0;
+            height: 15%;
+            text-align: right;
+            font-size: 40px;
+        }
+        .button-col {
+            margin: 0;
+            padding: 0;
+            height: 21.25%;
+            ion-button {
+                border-color: black;
+                border-right-width: 0px;
+                border-left-width: 0px;
+                border-radius: 0px;
+                width: 100%;
+                height: 100%;
+                font-size: 30px;
+            }
+        }
     }
 }
 
-.keypad-row {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-.input-col {
-    margin: 0;
-    padding: 0;
-    height: 15%;
-    text-align: right;
-    font-size: 40px;
-}
-
 ion-note {
-    font-size: 11pt
+    font-size: 11pt;
 }
 
 ion-avatar {

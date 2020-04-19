@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/models/item.model';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ItemService } from '../services/item.service';
 import { ItemAddPage } from '../modals/item-add/item-add.page';
 import { ItemEditPage } from '../modals/item-edit/item-edit.page';
@@ -16,8 +16,6 @@ export class ItemsPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController,
-    private navCtrl: NavController,
     private itemService: ItemService
   ) {}
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { Item } from 'src/models/item.model';
-import { ChargePage } from '../modals/charge/charge.page';
+import { ChargePage } from '../charge/charge.page';
 
 @Component({
   selector: 'app-checkout',

@@ -25,8 +25,8 @@ export class ChargePage implements OnInit {
     return await modal.present();
   }
 
-  closeChargeModal() {
-    //await this.modalCtrl.dismiss();
+  async closeChargeModal() {
+    await this.modalCtrl.dismiss();
   }
 
 }

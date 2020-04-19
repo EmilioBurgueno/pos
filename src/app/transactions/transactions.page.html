@@ -3,22 +3,26 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>transactions</ion-title>
+        <ion-title>Transactions</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list *ngFor="let transaction of transactions">
         <ion-list-header lines='full'>
-            <ion-label>{{today | date: 'dd/MM/yyyy'}}</ion-label>
+            <ion-label><b>{{ day }},{{today | date: ' MMMM dd, yyyy'}}</b></ion-label>
         </ion-list-header>
-        <ion-item (click)="openModal(transaction.id)">
+        <ion-item (click)="goToDesc(transaction.id)">
             <ion-label>
-                <h2>{{transaction.total}}</h2>
-                <p>{{transaction.totalQuantity}} items</p>
+                <h2>$65.25</h2>
+                <p>2 items</p>
             </ion-label>
-            <ion-note slot="end">{{ today | date: 'HH:mm'}}</ion-note>
+            <ion-note item-right>
+                {{ time }}
+            </ion-note>
+            <ion-note slot="end" class="arrow-icon">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+            </ion-note>
         </ion-item>
     </ion-list>
-
 </ion-content>

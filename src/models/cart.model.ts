@@ -1,5 +1,7 @@
+import { Item } from './item.model';
+
 export interface Cart{
-    item: string;
+    items: Item[];
     customEntries: number;
     totalQuantity: number;
     subtotal: number;

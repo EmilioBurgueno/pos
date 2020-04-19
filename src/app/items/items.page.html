@@ -22,10 +22,12 @@
                     </ion-item-option>
                 </ion-item-options>
                 <ion-item (click)="itemDescription(item.id)">
-                    <ion-avatar slot="start">
-                        {{ item.name | slice:0:2 }}
-                    </ion-avatar>
-                    <ion-label>
+                    <slot name="start">
+                        <ion-avatar>
+                            {{ item.name | slice:0:2 }}
+                        </ion-avatar>
+                    </slot>
+                    <ion-label class="itemsep">
                         <ion-label> {{ item.name }} </ion-label>
                         <ion-note> {{ item.status }} </ion-note>
                     </ion-label>

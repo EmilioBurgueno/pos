@@ -10,21 +10,6 @@ export class CartService {
 
   constructor(private afs: AngularFirestore ) { }
 
-  addTransaction(cart: any) {
-    return this.afs.collection('transaction').add(cart);
-  }
-
-  getCarts() {
-    return this.afs.collection('cart').snapshotChanges().pipe(
-      map(docs => docs.map(doc => {
-        const cart = doc.payload.doc.data() as any;
-        const id = doc.payload.doc.id;
-
-        return {id, ...cart } as Cart;
-      }))
-    )
-  }
-
   getCart(cartId: string) {
     return this.afs.doc(`cart/${cartId}`).snapshotChanges().pipe(
       map(doc => {
@@ -43,5 +28,11 @@ export class CartService {
     return this.afs.doc(`cart/${cartId}`).update(updatedCart);
   }
 
+  //Agregar Item a carrito
+  //Entrada manual al carrito
+  //Se agrega tip al carrito
+  // Se devuelve una lista de items del carrito
+  // Se guarda en el LocalStorage el carrito
+  //Se elimina del LocalStorage el carrito
 
 }

@@ -10,17 +10,28 @@ export class TransactionService {
 
   constructor(private afs: AngularFirestore) { }
 
-  // createTransaction(transaction:any){
-  //   return this.afs.collection('transaction').add(transaction);
-  // }
+  createTransaction(transaction:any){
+    return this.afs.collection('transaction').add(transaction);
+  }
 
-  // getTransactions() {
-  //   return this.afs.collection('transaction').snapshotChanges().pipe(
-  //     map(docs => docs.map(doc => {
-  //       const item = doc.payload.doc.data() as any;
-  //       const id = doc.payload.doc.id;
+  getTransactions() {
+    return this.afs.collection('transaction').snapshotChanges().pipe(
+      map(docs => docs.map(doc => {
+        const trans = doc.payload.doc.data() as any;
+        const id = doc.payload.doc.id;
 
-  //       return { id, ...date } as Transaction;
-  //     }))
-  //   )
+        return { id, ...trans } as Transaction;
+      }))
+    )
+  }
+
+  getTransaction(transId: string) {
+    return this.afs.doc(`transaction/${transId}`).snapshotChanges().pipe(
+      map(doc => {
+        const trans = doc.payload.data() as any;
+        const id = doc.payload.id;
+        return { id, ...trans } as Transaction;
+      })
+    );
+  }
 }

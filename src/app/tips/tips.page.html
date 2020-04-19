@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons>
+            <ion-icon name="close-outline"></ion-icon>
+        </ion-buttons>
+        <ion-title>Tips</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-col size="12">
+            <div>
+                <h1>Add a tip?</h1>
+            </div>
+            <!-- <ion-label>Add a tip?</ion-label> -->
+            <div>
+                <h3>$Subtotal</h3>
+            </div>
+            <!-- <ion-label>$Subtotal</ion-label> -->
+        </ion-col>
+
+        <ion-row>
+            <ion-button expand="block" fill="solid">20% (Calculated Tip)</ion-button>
+        </ion-row>
+
+        <ion-button expand="block" fill="solid">15% (Calculated Tip)</ion-button>
+        <ion-button expand="block" fill="solid">10% (Calculated Tip)</ion-button>
+        <ion-button expand="block" fill="solid" (click)="customTipAlert()">CUSTOM TIP</ion-button>
+        <ion-button expand="block" fill="solid">NO TIP</ion-button>
+    </ion-grid>
+
+</ion-content>
