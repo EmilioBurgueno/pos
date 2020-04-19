@@ -21,7 +21,7 @@
                         <ion-icon slot="icon-only" *ngIf="item.status === 'hidden'" name="eye-outline"></ion-icon>
                     </ion-item-option>
                 </ion-item-options>
-                <ion-item (click)="itemDescription(item.id)">
+                <ion-item>
                     <slot name="start">
                         <ion-avatar>
                             {{ item.name | slice:0:2 }}

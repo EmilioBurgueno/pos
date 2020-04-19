@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { Item } from 'src/models/item.model';
 import { ChargePage } from '../charge/charge.page';
+import { ItemService } from '../services/item.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,11 +13,15 @@ export class CheckoutPage implements OnInit {
 
   Items: Item[] = [];
 
-  checkoutTotal:number;
+  viewMode = 'basket'
 
-  constructor(private modalCtrl: ModalController ) { }
+  //checkoutTotal: number;
+
+  constructor(private modalCtrl: ModalController,
+              private itemService: ItemService) { }
 
   ngOnInit() {
+    this.getAvItems()
   }
 
   async openchargeModal(){
@@ -24,6 +29,13 @@ export class CheckoutPage implements OnInit {
       component: ChargePage
     });
     return await modal.present();
+  }
+
+  getAvItems() {
+    this.itemService.getAvItems().subscribe(items => {
+      this.Items = items;
+      console.log(this.Items);
+    });
   }
 
 }

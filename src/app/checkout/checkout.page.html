@@ -25,14 +25,17 @@
 
     <ng-template #basket>
         <ion-list>
-            <ion-item-sliding *ngFor="let cartItem of cartItems">
-                <ion-item>
-                    <ion-avatar>
-                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                    </ion-avatar>
-                    <ion-label>
-                        Producto
+            <ion-item-sliding *ngFor="let item of Items">
+                <ion-item (click)="itemDescription(item.id)">
+                    <slot name="start">
+                        <ion-avatar>
+                            {{ item.name | slice:0:2 }}
+                        </ion-avatar>
+                    </slot>
+                    <ion-label class="itemsep">
+                        <ion-label> {{ item.name }} </ion-label>
                     </ion-label>
+                    <ion-note> {{ item.price | currency }} </ion-note>
                 </ion-item>
             </ion-item-sliding>
         </ion-list>
@@ -48,44 +51,68 @@
                 </ion-col>
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">1<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">1
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">2<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">2
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">3<ion-ripple-effect></ion-ripple-effect></ion-button>
-                </ion-col>
-
-                <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">4<ion-ripple-effect></ion-ripple-effect></ion-button>
-                </ion-col>
-                <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">5<ion-ripple-effect></ion-ripple-effect></ion-button>
-                </ion-col>
-                <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">6<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">3
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">7<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">4
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">8<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">5
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">9<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">6
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
+                </ion-col>
+
+                <ion-col class="button-col" size="4">
+                    <ion-button size="large" expand="full" fill="solid">7
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
+                </ion-col>
+                <ion-col class="button-col" size="4">
+                    <ion-button size="large" expand="full" fill="solid">8
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
+                </ion-col>
+                <ion-col class="button-col" size="4">
+                    <ion-button size="large" expand="full" fill="solid">9
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
 
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">C<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">C
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">0<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">0
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid">+<ion-ripple-effect></ion-ripple-effect></ion-button>
+                    <ion-button size="large" expand="full" fill="solid">+
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-button>
                 </ion-col>
 
             </ion-row>
