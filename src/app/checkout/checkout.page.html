@@ -4,12 +4,13 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>Checkout</ion-title>
-
+    </ion-toolbar>
+    <ion-toolbar id="charge-toolbar">
+        <ion-button expand="block" fill="solid" expand="block" (click)="openchargeModal()">CHARGE transaction subtotal</ion-button>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-button expand="full" fill="solid">CHARGE transaction subtotal</ion-button>
     <ion-segment [(ngModel)]="viewMode" value="basket">
         <ion-segment-button value="numpad">
             <ion-icon name="keypad-outline"></ion-icon>
@@ -18,31 +19,33 @@
             <ion-icon name="basket-outline"></ion-icon>
         </ion-segment-button>
     </ion-segment>
-    <ion-grid fixed>
-        <div class="row" *ngIf="viewMode === 'basket' then basket else numpad"></div>
 
-        <ng-template #basket>
-            <ion-list>
-                <ion-item-sliding *ngFor="let cartItem of cartItems">
-                    <ion-item>
-                        <ion-avatar>
-                            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                        </ion-avatar>
-                        <ion-label>
-                            Producto
-                        </ion-label>
-                    </ion-item>
-                </ion-item-sliding>
-            </ion-list>
-        </ng-template>
+    <div class="row" *ngIf="viewMode === 'basket' then basket else numpad"></div>
 
+    <ng-template #basket>
+        <ion-list>
+            <ion-item-sliding *ngFor="let cartItem of cartItems">
+                <ion-item>
+                    <ion-avatar>
+                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                    </ion-avatar>
+                    <ion-label>
+                        Producto
+                    </ion-label>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-list>
+    </ng-template>
+
+    <ion-grid class="keypadgrid">
         <ng-template #numpad>
-            <ion-row>
-                <ion-col size="12">
+
+            <ion-row id="keypad-row">
+
+                <ion-col class="input-col" size="12">
                     <ion-label>$Transaction subtotal</ion-label>
                 </ion-col>
-            </ion-row>
-            <ion-row>
+
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">7</ion-button>
                 </ion-col>
@@ -52,8 +55,7 @@
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">9</ion-button>
                 </ion-col>
-            </ion-row>
-            <ion-row>
+
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">4</ion-button>
                 </ion-col>
@@ -63,8 +65,7 @@
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">6</ion-button>
                 </ion-col>
-            </ion-row>
-            <ion-row>
+
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">1</ion-button>
                 </ion-col>
@@ -74,8 +75,7 @@
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">3</ion-button>
                 </ion-col>
-            </ion-row>
-            <ion-row>
+
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">C</ion-button>
                 </ion-col>
@@ -85,12 +85,14 @@
                 <ion-col class="button-col" size="4">
                     <ion-button size="large" expand="full" fill="solid">+</ion-button>
                 </ion-col>
+
             </ion-row>
         </ng-template>
-
     </ion-grid>
 </ion-content>
 
 <ion-footer>
-    <ion-button expand="block" fill="outline" (click)="clearItems()">CLEAR ITEMS</ion-button>
+    <ion-toolbar>
+        <ion-button expand="block" fill="outline" (click)="clearItems()">CLEAR ITEMS</ion-button>
+    </ion-toolbar>
 </ion-footer>

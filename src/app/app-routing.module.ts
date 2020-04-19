@@ -30,6 +30,22 @@ const routes: Routes = [
   {
     path: 'item-edit',
     loadChildren: () => import('./modals/item-edit/item-edit.module').then( m => m.ItemEditPageModule)
+  },
+  {
+    path: 'charge',
+    loadChildren: () => import('./modals/charge/charge.module').then( m => m.ChargePageModule)
+  },
+  {
+    path: 'transaction-desc',
+    loadChildren: () => import('./modals/transaction-desc/transaction-desc.module').then( m => m.TransactionDescPageModule)
+  },
+  {
+    path: 'tips',
+    loadChildren: () => import('./modals/tips/tips.module').then( m => m.TipsPageModule)
+  },
+  {
+    path: 'co-done',
+    loadChildren: () => import('./modals/co-done/co-done.module').then( m => m.CoDonePageModule)
   }
 ];
 

@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ItemAddPageModule } from './modals/item-add/item-add.module';
 import { ItemEditPageModule } from './modals/item-edit/item-edit.module';
+import { TransactionDescPageModule } from './modals/transaction-desc/transaction-desc.module';
+import { ChargePageModule } from './modals/charge/charge.module';
+import { TipsPageModule } from './modals/tips/tips.module';
+import { CoDonePageModule } from './modals/co-done/co-done.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +29,12 @@ import { ItemEditPageModule } from './modals/item-edit/item-edit.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule, ReactiveFormsModule,
-    ItemAddPageModule, ItemEditPageModule
+    ItemAddPageModule,
+    ItemEditPageModule,
+    TransactionDescPageModule,
+    ChargePageModule,
+    TipsPageModule,
+    CoDonePageModule
   ],
   providers: [
     StatusBar,

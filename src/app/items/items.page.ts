@@ -62,19 +62,14 @@ export class ItemsPage implements OnInit {
       });
   }
 
-  changeStatus(itemId: string, itemSta: string, itemName: string, itemPrice: string) {
-    if (itemSta === "available") {
-      itemSta = "hidden";
+  changeStatus(item: Item) {
+    if (item.status === "available") {
+      item.status = "hidden";
     } else {
-      itemSta = "available";
+      item.status = "available";
     }
-    const updatedItem = {
-      name: itemName,
-      price: itemPrice,
-      status: itemSta
-    };
     this.itemService
-      .updateItem(itemId, updatedItem)
+      .updateItem(item.id, item)
       .then(() => {
         console.log("Status Changed");
       })

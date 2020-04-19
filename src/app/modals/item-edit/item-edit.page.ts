@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, AlertController, NavParams } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ItemService } from 'src/app/services/item.service';
@@ -11,7 +11,7 @@ import { Item } from 'src/models/item.model';
 })
 export class ItemEditPage implements OnInit {
 
-  //@Input() iID: string;
+  @Input() iID: string;
 
   edititemForm: FormGroup;
 
@@ -23,6 +23,9 @@ export class ItemEditPage implements OnInit {
               private itemService: ItemService) { }
 
   ngOnInit() {
+    const iID = this.navParams.get('iID');
+    this.getItem(iID);
+    this.initForm();
   }
 
   getItem(itemId: string) {
@@ -33,12 +36,50 @@ export class ItemEditPage implements OnInit {
     })
   }
 
-  
+  updateItem() {
+    const updatedItem = {
+      ...this.edititemForm.value
+    };
+
+    this.itemService.updateItem(this.iID, updatedItem).then(() => {
+      this.editAlert();
+    }).catch((error) => {
+      console.log(error)
+    });
+  }  
 
   patchForm() {
     this.edititemForm.patchValue({
       name: this.item.name,
       price: this.item.price
     })
+  }
+
+  initForm() {
+    this.edititemForm = new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      price: new FormControl(null, [Validators.required])
+    });
+  }
+
+  async closeModal() {
+    await this.modalCtrl.dismiss();
+  }
+
+  async editAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Success!',
+      message: 'Your Item has been updated successfully',
+      buttons: [
+        {
+          text: 'OKAY',
+          handler: () => {
+            this.closeModal();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

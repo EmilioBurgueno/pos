@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { Item } from 'src/models/item.model';
+import { ChargePage } from '../modals/charge/charge.page';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutPage implements OnInit {
 
-  constructor() { }
+  Items: Item[] = [];
+
+  checkoutTotal:number;
+
+  constructor(private modalCtrl: ModalController ) { }
 
   ngOnInit() {
+  }
+
+  async openchargeModal(){
+    const modal = await this.modalCtrl.create({
+      component: ChargePage
+    });
+    return await modal.present();
   }
 
 }

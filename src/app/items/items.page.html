@@ -13,19 +13,27 @@
             <div>
                 <ion-item-options side="start">
                     <ion-item-option (click)="openModalEdit(item.id)">
-                        <ion-icon name="create-outline"></ion-icon>
+                        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                     </ion-item-option>
-                    <ion-item-option (click)="changeStatus(item.id, item.status, item.name, item.price)" color="medium">
-                        <ion-icon *ngIf="item.status = 'available'" name="eye-off-outline"></ion-icon>
-                        <ion-icon *ngIf="item.status = 'hidden'" name="eye-outline"></ion-icon>
+                    <ion-item-option (click)="changeStatus(item)" color="medium">
+                        <ion-icon slot="icon-only" *ngIf="item.status === 'available'" name="eye-off-outline">
+                        </ion-icon>
+                        <ion-icon slot="icon-only" *ngIf="item.status === 'hidden'" name="eye-outline"></ion-icon>
                     </ion-item-option>
                 </ion-item-options>
                 <ion-item (click)="itemDescription(item.id)">
-                    <ion-label>{{ item.name }}</ion-label>
+                    <ion-avatar slot="start">
+                        {{ item.name | slice:0:2 }}
+                    </ion-avatar>
+                    <ion-label>
+                        <ion-label> {{ item.name }} </ion-label>
+                        <ion-note> {{ item.status }} </ion-note>
+                    </ion-label>
+                    <ion-note> {{ item.price | currency }} </ion-note>
                 </ion-item>
                 <ion-item-options side="end">
                     <ion-item-option color="danger" (click)="deleteItem(item.id)">
-                        <ion-icon name="trash-outline"></ion-icon>
+                        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
                     </ion-item-option>
                 </ion-item-options>
             </div>

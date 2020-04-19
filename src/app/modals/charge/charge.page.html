@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Sale $00.00</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref=" ">Back</ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of Items">
+            <div>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        {{ item.name | slice:0:2 }}
+                    </ion-avatar>
+                    <ion-label>
+                        <ion-label> {{ item.name }} </ion-label>
+                        <ion-note> {{ item.quantity }} </ion-note>
+                    </ion-label>
+                    <ion-note> {{ item.price | currency }} </ion-note>
+                </ion-item>
+            </div>
+        </ion-item-sliding>
+        <ion-item>
+            <ion-label>
+                <ion-label>Subtotal</ion-label>
+                <ion-note>$Subtotal</ion-note>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-label>Tax(9.75%)</ion-label>
+                <ion-note>$Tax</ion-note>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-label class="total">Total</ion-label>
+                <ion-note>$Total</ion-note>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="block" fill="outline" (click)="confirmPayment();openTipsModal();closeChargeModal();">CONFIRM AND PAY</ion-button>
+    </ion-toolbar>
+</ion-footer>
