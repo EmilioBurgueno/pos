@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-title>Sale $00.00</ion-title>
         <ion-buttons slot="start">
-            <ion-back-button>Back</ion-back-button>
+            <ion-back-button defaultHref="menu/checkout">Back</ion-back-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -48,6 +48,6 @@
 
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="block" fill="outline" (click)="confirmPayment();openTipsModal();closeChargeModal();">CONFIRM AND PAY</ion-button>
+        <ion-button expand="block" fill="outline" (click)="confirmPayment()">CONFIRM AND PAY</ion-button>
     </ion-toolbar>
 </ion-footer>

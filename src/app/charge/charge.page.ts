@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { TipsPage } from '../tips/tips.page';
 
 @Component({
@@ -9,24 +9,15 @@ import { TipsPage } from '../tips/tips.page';
 })
 export class ChargePage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
   confirmPayment(){
 
-  }
 
-  async openTipsModal() {
-    const modal = await this.modalCtrl.create({
-      component: TipsPage
-    });
-    return await modal.present();
-  }
-
-  async closeChargeModal() {
-    await this.modalCtrl.dismiss();
+    this.navCtrl.navigateForward(['menu', 'tips'])
   }
 
 }

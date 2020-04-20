@@ -8,6 +8,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'menu',
+    redirectTo: 'menu/checkout',
+    pathMatch: 'full'
+  },
+  {
     path: 'menu/checkout',
     loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
   },
@@ -24,6 +29,18 @@ const routes: Routes = [
     loadChildren: () => import('./transaction-desc/transaction-desc.module').then( m => m.TransactionDescPageModule)
   },
   {
+    path: 'menu/charge',
+    loadChildren: () => import('./charge/charge.module').then( m => m.ChargePageModule)
+  },
+  {
+    path: 'menu/tips',
+    loadChildren: () => import('./tips/tips.module').then( m => m.TipsPageModule)
+  },
+  {
+    path: 'menu/co-done',
+    loadChildren: () => import('./co-done/co-done.module').then( m => m.CoDonePageModule)
+  },
+  {
     path: 'menu/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
@@ -34,18 +51,6 @@ const routes: Routes = [
   {
     path: 'item-edit',
     loadChildren: () => import('./modals/item-edit/item-edit.module').then( m => m.ItemEditPageModule)
-  },
-  {
-    path: 'charge',
-    loadChildren: () => import('./charge/charge.module').then( m => m.ChargePageModule)
-  },
-  {
-    path: 'tips',
-    loadChildren: () => import('./tips/tips.module').then( m => m.TipsPageModule)
-  },
-  {
-    path: 'co-done',
-    loadChildren: () => import('./co-done/co-done.module').then( m => m.CoDonePageModule)
   }
 ];
 

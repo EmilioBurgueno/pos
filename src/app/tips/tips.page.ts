@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tips',
@@ -8,7 +8,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class TipsPage implements OnInit {
 
-  constructor(private alertCtrl: AlertController) { }
+  constructor(private alertCtrl: AlertController,
+              private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -37,6 +38,7 @@ export class TipsPage implements OnInit {
           handler: data => {
             if (data.tip > 0) {
               console.log('Tip added');
+              this.navCtrl.navigateForward(['menu', 'co-done'])
             } else {
               return false
             }
@@ -47,5 +49,14 @@ export class TipsPage implements OnInit {
     });
     await alert.present();
   }
+
+  goToCoDone() {
+    this.navCtrl.navigateForward(['menu', 'co-done'])
+  }
+  
+  goToCheckout() {
+    this.navCtrl.navigateForward(['menu', 'checkout'])
+  }
+  
 
 }

@@ -1,9 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>coDone</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="secondary" class="buttons-last-slot">
+            <ion-button>
+                <ion-icon name="close-outline" (click)="goToCheckout"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Done!</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+    <div id="container">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12">
+                    <div class="ion-text-center">
+                        <h1>Thank You!</h1>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-button expand="block" fill="solid" (click)="goToCheckout">New Sale</ion-button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
 </ion-content>

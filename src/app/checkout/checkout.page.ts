@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { Item } from 'src/models/item.model';
-import { ChargePage } from '../charge/charge.page';
+import { Cart } from 'src/models/cart.model';
 import { ItemService } from '../services/item.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,30 +13,50 @@ import { ItemService } from '../services/item.service';
 export class CheckoutPage implements OnInit {
 
   Items: Item[] = [];
+  cart: Cart;
 
+  chargeValue = 0.0;
+  numpadValue = '0';
   viewMode = 'basket'
 
-  //checkoutTotal: number;
-
-  constructor(private modalCtrl: ModalController,
-              private itemService: ItemService) { }
+  constructor(private navCtrl: NavController,
+              private itemService: ItemService,
+              private cartService: CartService) {
+                if (!this.cartService.isEnabled()) {
+                this.cartService.setCart()
+              }}
 
   ngOnInit() {
     this.getAvItems()
   }
 
-  async openchargeModal(){
-    const modal = await this.modalCtrl.create({
-      component: ChargePage
-    });
-    return await modal.present();
+  goToCharge() {
+    this.navCtrl.navigateForward(['menu', 'charge'])
   }
 
   getAvItems() {
     this.itemService.getAvItems().subscribe(items => {
-      this.Items = items;
-      console.log(this.Items);
+      this.Items = items.filter(x => x !== undefined);
     });
+  }
+
+  clearItems() {
+    this.cartService.clearCart()
+  }
+
+  addCItem(item: Item) {
+    this.cartService.addCItem(item);
+  }
+
+  addValue (chargeValue,numpadValue){
+    var decimal = '.';
+    var len = numpadValue.len;
+    var text = numpadValue.substring(0, len-2) + "." + numpadValue.substring(len-2);
+    this.chargeValue = this.chargeValue + parseFloat(this.numpadValue)
+  }
+
+  addNumber(numberInput: string) {
+    this.numpadValue.concat(this.numpadValue,numberInput);
   }
 
 }
