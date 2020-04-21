@@ -14,6 +14,6 @@ export class CoDonePage implements OnInit {
   }
 
   goToCheckout() {
-    this.navCtrl.navigateForward(['menu', 'checkout'])
+    this.navCtrl.navigateRoot(['menu', 'checkout'])
   }
 }

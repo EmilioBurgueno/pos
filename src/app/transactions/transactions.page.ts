@@ -3,7 +3,8 @@ import { Item } from 'src/models/item.model';
 import { Transaction } from 'src/models/transaction.model';
 import { TransactionService } from '../services/transaction.service';
 import { NavController } from '@ionic/angular';
-
+import { DatePipe } from '@angular/common';
+ 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.page.html',
@@ -11,26 +12,14 @@ import { NavController } from '@ionic/angular';
 })
 export class TransactionsPage implements OnInit {
 
-  today = Date.now();
-
-  date = new Date();
-  options = {
-  hour: 'numeric',
-  minute: 'numeric',
-  hour12: true
-  };
-  time = new Intl.DateTimeFormat('en-US', this.options).format(this.date);
-
-  days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-  day = this.days[ this.date.getDay() ];
+  date = Date.now();
 
   item: Item;
 
   transactions: Transaction[] = [
     {
       id: '001',
-      customEntries: 0.22,
+      customEntries: [],
       items: [
         {
           id: '002',
@@ -44,11 +33,11 @@ export class TransactionsPage implements OnInit {
       tax: 1.25,
       tips: 0,
       total: 11.25,
-      date: this.today
+      date: this.date
     },
     {
       id: '001',
-      customEntries: 0.22,
+      customEntries: [],
       items: [
         {
           id: '002',
@@ -62,14 +51,16 @@ export class TransactionsPage implements OnInit {
       tax: 1.25,
       tips: 0,
       total: 11.25,
-      date: this.today
+      date: this.date
     }
   ];
 
   constructor(private navCtrl: NavController,
-    private transactionService: TransactionService) { }
+              private transactionService: TransactionService,
+              private datePipe: DatePipe) { }
 
   ngOnInit() {
+    
   }
 
   goToDesc(transId: String) {
@@ -81,5 +72,10 @@ export class TransactionsPage implements OnInit {
       this.transactions = transacs;
     });
   }
-
+  
+  groupTransactions(transactions: Transaction) {
+    this.transactionService.groupTransactions(transactions);
+  }
+  
+  //sortedDates = this.transactions.slice().sort((a, b) => b.date - a.date)
 }

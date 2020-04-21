@@ -2,11 +2,8 @@ import { Item } from './item.model';
 
 export interface Transaction{
     id: string;
-    customEntries: {
-        name: string;
-        price: number;
-    }
-    items: Item[];
+    customEntries: Object[];
+    items: {};
     totalQuantity: number;
     subtotal: number;
     tax: number;

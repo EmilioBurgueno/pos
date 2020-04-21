@@ -1,8 +1,8 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="secondary" class="buttons-last-slot">
-            <ion-button>
-                <ion-icon name="close-outline" (click)="goToCheckout()"></ion-icon>
+            <ion-button (click)="goToCoDone()">
+                <ion-icon name="close-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
         <ion-title>Tips</ion-title>
@@ -16,23 +16,23 @@
                 <h1 class="ion-text-center">Add a tip?</h1>
             </div>
             <div>
-                <h3 class="ion-text-center">$Subtotal</h3>
+                <h3 class="ion-text-center">{{ totalValue | currency }}</h3>
             </div>
         </ion-col>
 
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">20% (Calculated Tip)</ion-button>
+                <ion-button expand="block" fill="solid" (click)="addTip()">20% ({{ Tip20 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">15% (Calculated Tip)</ion-button>
+                <ion-button expand="block" fill="solid" (click)="goToCoDone()">15% ({{ Tip15 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">10% (Calculated Tip)</ion-button>
+                <ion-button expand="block" fill="solid" (click)="goToCoDone()">10% ({{ Tip10 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>

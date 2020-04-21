@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Sale $00.00</ion-title>
+        <ion-title>Sale {{totalValue | currency}}</ion-title>
         <ion-buttons slot="start">
             <ion-back-button defaultHref="menu/checkout">Back</ion-back-button>
         </ion-buttons>
@@ -10,37 +10,28 @@
 <ion-content>
 
     <ion-list>
-        <ion-item-sliding *ngFor="let item of Items">
-            <div>
-                <ion-item>
-                    <ion-avatar slot="start">
-                        {{ item.name | slice:0:2 }}
-                    </ion-avatar>
-                    <ion-label>
-                        <ion-label> {{ item.name }} </ion-label>
-                        <ion-note> {{ item.quantity }} </ion-note>
-                    </ion-label>
-                    <ion-note> {{ item.price | currency }} </ion-note>
-                </ion-item>
-            </div>
-        </ion-item-sliding>
-        <ion-item>
-            <ion-label>
-                <ion-label>Subtotal</ion-label>
-                <ion-note>$Subtotal</ion-note>
+        <ion-item *ngFor="let item of items">
+            <slot name=" start ">
+                <ion-avatar>
+                    {{ item.item.name | slice:0:2 }}
+                </ion-avatar>
+            </slot>
+            <ion-label class="itemsep ">
+                <h2>{{ item.item.name }}(x{{ item.item.quantity }})</h2>
             </ion-label>
+            <ion-note slot="end ">{{ item.item.price | currency }}</ion-note>
         </ion-item>
         <ion-item>
-            <ion-label>
-                <ion-label>Tax(9.75%)</ion-label>
-                <ion-note>$Tax</ion-note>
-            </ion-label>
+            <ion-label>Subtotal</ion-label>
+            <ion-note slot="end ">{{ subtotalValue | currency }}</ion-note>
         </ion-item>
         <ion-item>
-            <ion-label>
-                <ion-label class="total">Total</ion-label>
-                <ion-note>$Total</ion-note>
-            </ion-label>
+            <ion-label>Tax (9.75%)</ion-label>
+            <ion-note slot="end ">{{ taxValue | currency }}</ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label><b>Total</b></ion-label>
+            <ion-note slot="end ">{{ totalValue | currency }}</ion-note>
         </ion-item>
     </ion-list>
 
@@ -48,6 +39,6 @@
 
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="block" fill="outline" (click)="confirmPayment()">CONFIRM AND PAY</ion-button>
+        <ion-button expand="block " fill="outline " (click)="confirmPayment() ">CONFIRM AND PAY</ion-button>
     </ion-toolbar>
 </ion-footer>

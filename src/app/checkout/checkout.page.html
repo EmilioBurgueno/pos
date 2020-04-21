@@ -6,7 +6,7 @@
         <ion-title>Checkout</ion-title>
     </ion-toolbar>
     <ion-toolbar id="charge-toolbar">
-        <ion-button expand="block" fill="solid" (click)="goToCharge()">Charge {{chargeValue | currency}}
+        <ion-button [disabled]="des" expand="block" fill="solid" (click)="goToCharge()">Charge {{chargeValue | currency}}
         </ion-button>
     </ion-toolbar>
 </ion-header>
@@ -47,72 +47,48 @@
             <ion-row class="keypad-row">
 
                 <ion-col class="input-col" size="12">
-                    <ion-label [(ngModel)]="numpadValue"></ion-label>
+                    <label>{{ numVal | currency}}</label>
                 </ion-col>
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('1')">1
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.01)">1</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('2')">2
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.02)">2</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('3')">3
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.03)">3</ion-button>
                 </ion-col>
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('4')">4
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.04)">4</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('5')">5
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.05)">5</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('6')">6
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.06)">6</ion-button>
                 </ion-col>
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('7')">7
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.07)">7</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('8')">8
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.08)">8</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('9')">9
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0.09)">9</ion-button>
                 </ion-col>
 
 
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="clearAll()">C
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="clearAll()">C</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber('0')">0
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addNumber(0)">0</ion-button>
                 </ion-col>
                 <ion-col class="button-col" size="4">
-                    <ion-button size="large" expand="full" fill="solid" (click)="addValue(chargeValue)">+
-                        <ion-ripple-effect></ion-ripple-effect>
-                    </ion-button>
+                    <ion-button size="large" expand="full" fill="solid" (click)="addValue()">+</ion-button>
                 </ion-col>
 
             </ion-row>
@@ -122,6 +98,6 @@
 
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="block" fill="outline" (click)="clearItems()">CLEAR ITEMS</ion-button>
+        <ion-button expand="block" fill="outline" (click)="clearItems()">Clear Items</ion-button>
     </ion-toolbar>
 </ion-footer>

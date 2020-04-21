@@ -8,6 +8,9 @@ import { Transaction } from 'src/models/transaction.model';
 })
 export class TransactionService {
 
+  transaction: Transaction;
+  group: any;
+
   constructor(private afs: AngularFirestore) { }
 
   createTransaction(transaction:any){
@@ -33,5 +36,18 @@ export class TransactionService {
         return { id, ...trans } as Transaction;
       })
     );
+  }
+
+  groupTransactions(transactionList: Transaction) {
+    const groups = transactionList;
+    this.group = this.transaction.date[transactionList.id];
+    if(!this.group) {
+      this.group = {
+        key: this.transaction.date,
+        value: this.transaction
+      };
+
+      this.transaction.date[transactionList.id]= this.group;
+    }
   }
 }

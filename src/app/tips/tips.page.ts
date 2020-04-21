@@ -11,7 +11,13 @@ export class TipsPage implements OnInit {
   constructor(private alertCtrl: AlertController,
               private navCtrl: NavController) { }
 
+  totalValue = JSON.parse(localStorage.getItem('cart')).total;
+  Tip20 = this.totalValue * 0.20
+  Tip15 = this.totalValue * 0.15
+  Tip10 = this.totalValue * 0.10
+
   ngOnInit() {
+
   }
 
   async customTipAlert() {
@@ -38,11 +44,10 @@ export class TipsPage implements OnInit {
           handler: data => {
             if (data.tip > 0) {
               console.log('Tip added');
-              this.navCtrl.navigateForward(['menu', 'co-done'])
+              this.navCtrl.navigateRoot(['menu', 'co-done'])
             } else {
               return false
             }
-            
           }
         }
       ]
@@ -50,13 +55,7 @@ export class TipsPage implements OnInit {
     await alert.present();
   }
 
-  goToCoDone() {
+  addTip() {
     this.navCtrl.navigateForward(['menu', 'co-done'])
   }
-  
-  goToCheckout() {
-    this.navCtrl.navigateForward(['menu', 'checkout'])
-  }
-  
-
 }

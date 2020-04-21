@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cart } from 'src/models/cart.model';
 import { Item } from 'src/models/item.model';
+import { ItemAddPage } from '../modals/item-add/item-add.page';
 
 @Injectable({
   providedIn: 'root'
@@ -8,41 +9,57 @@ import { Item } from 'src/models/item.model';
 export class CartService {
 
   cart: Cart;
+  sItem: any;
 
   constructor() {
     if (!this.isEnabled()) {
       this.setCart()
     }
     else {
-      
+      this.cart = JSON.parse(localStorage.getItem('cart'))
     }
   }
 
   addCItem(citem: Item) {
-    const fullItem = {
-      item: citem,
-      quantity: 1,
-      price: citem.price
+    this.sItem = this.cart.items[citem.id]
+    if(!this.sItem) {
+      this.sItem = {
+        item: citem,
+        quantity: 0,
+        price: 0
+      };
+      this.cart.items[citem.id]= this.sItem;
     }
-    this.cart.items = fullItem
+    const price = Number(citem.price);
+    this.sItem.quantity++;
+    this.sItem.price = this.sItem.item.price * this.sItem.quantity;
+    this.cart.totalQuantity++;
+    this.cart.subtotal += price;
+    this.cart.tax = this.cart.subtotal * 0.0975;
+    this.cart.total = this.cart.subtotal + this.cart.tax;
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   addCCE(pri: number) {
-    // const CE  = {
-    //   name: "Custom Entry",
-    //   price: pri
-    // }
-    // this.cart.customEntries.push(CE)
-    // localStorage.setItem('cart', JSON.stringify(this.cart));
+    const CE  = {
+      name: "Custom Entry",
+      price: pri
+    }
+    this.cart.customEntries.push(CE)
+    this.cart.totalQuantity++;
+    this.cart.subtotal += pri;
+    this.cart.tax = this.cart.subtotal * 0.0975;
+    this.cart.total = this.cart.subtotal + this.cart.tax;
+    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   addTip(ctip: number) {
     this.cart.tips = ctip;
+    this.cart.total += ctip;
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  getCart(): any {
+  getCart(): {} {
     return this.cart.items;
   }
 
@@ -58,12 +75,6 @@ export class CartService {
     }
     localStorage.setItem('cart', JSON.stringify(emptyCart));
     this.cart = emptyCart;
-  }
-
-  clearCart(): void {
-    localStorage.removeItem('cart');
-    this.cart = null;
-    this.setCart();
   }
 
   isEnabled(): boolean {
