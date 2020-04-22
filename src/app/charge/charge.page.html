@@ -11,27 +11,27 @@
 
     <ion-list>
         <ion-item *ngFor="let item of items">
-            <slot name=" start ">
+            <slot name="start">
                 <ion-avatar>
-                    {{ item.item.name | slice:0:2 }}
+                    {{ item[1].item.name | slice:0:2 }}
                 </ion-avatar>
             </slot>
-            <ion-label class="itemsep ">
-                <h2>{{ item.item.name }}(x{{ item.item.quantity }})</h2>
+            <ion-label class="itemsep">
+                <h2>{{ item[1].item.name }} (x{{ item[1].quantity }})</h2>
             </ion-label>
-            <ion-note slot="end ">{{ item.item.price | currency }}</ion-note>
+            <ion-note slot="end">{{ item[1].price | currency }}</ion-note>
         </ion-item>
         <ion-item>
             <ion-label>Subtotal</ion-label>
-            <ion-note slot="end ">{{ subtotalValue | currency }}</ion-note>
+            <ion-note slot="end">{{ subtotalValue | currency }}</ion-note>
         </ion-item>
         <ion-item>
             <ion-label>Tax (9.75%)</ion-label>
-            <ion-note slot="end ">{{ taxValue | currency }}</ion-note>
+            <ion-note slot="end">{{ taxValue | currency }}</ion-note>
         </ion-item>
         <ion-item>
             <ion-label><b>Total</b></ion-label>
-            <ion-note slot="end ">{{ totalValue | currency }}</ion-note>
+            <ion-note slot="end">{{ totalValue | currency }}</ion-note>
         </ion-item>
     </ion-list>
 
@@ -39,6 +39,6 @@
 
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="block " fill="outline " (click)="confirmPayment() ">CONFIRM AND PAY</ion-button>
+        <ion-button expand="block" fill="outline" (click)="confirmPayment()">CONFIRM AND PAY</ion-button>
     </ion-toolbar>
 </ion-footer>

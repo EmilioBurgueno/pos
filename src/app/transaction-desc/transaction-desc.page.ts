@@ -14,21 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TransactionDescPage implements OnInit {
 
-  today = Date.now();
-
-  date = new Date();
-  options = {
-  hour: 'numeric',
-  minute: 'numeric',
-  hour12: true
-  };
-  time = new Intl.DateTimeFormat('en-US', this.options).format(this.date);
-
-  days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
   transaction: Transaction;
-  
-  //day = this.days[ this.transaction.date.getDay() ];
+  items: any
 
   constructor(private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute) { }
@@ -36,11 +23,19 @@ export class TransactionDescPage implements OnInit {
   ngOnInit() {
     const transID = this.activatedRoute.snapshot.paramMap.get('id');
     this.getTrans(transID);
+    
   }
 
   getTrans(transId: string) {
     this.transactionService.getTransaction(transId).subscribe((trans) => {
       this.transaction = trans;
+      this.getCItems()
     })
+  }
+
+  getCItems() {
+    console.log(this.transaction)
+    this.items = Object.entries(this.transaction.items);
+    console.log(this.items)
   }
 }

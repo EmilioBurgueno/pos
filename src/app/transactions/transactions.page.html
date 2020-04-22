@@ -3,26 +3,28 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>Transactions</ion-title>
+        <ion-title>Transactions {{ test | date: 'shortTime' }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list *ngFor="let transaction of transactions">
+    <ion-list *ngFor="let TDate of groupArrays">
         <ion-list-header lines='full'>
-            <ion-label><b>{{ date | date:'fullDate' }}</b></ion-label>
+            <ion-label><b>{{ TDate.key }}</b></ion-label>
         </ion-list-header>
-        <ion-item (click)="goToDesc(transaction.id)">
-            <ion-label>
-                <h2>{{ transaction.total | currency }}</h2>
-                <p>{{ transaction.totalQuantity }} items</p>
-            </ion-label>
-            <ion-note item-right>
-                {{ time }}
-            </ion-note>
-            <ion-note slot="end" class="arrow-icon">
-                <ion-icon name="chevron-forward-outline"></ion-icon>
-            </ion-note>
-        </ion-item>
+        <ion-list *ngFor="let transaction of TDate.value">
+            <ion-item (click)="goToDesc(transaction.id)">
+                <ion-label>
+                    <h2>{{ transaction.total | currency }}</h2>
+                    <p>{{ transaction.totalQuantity }} items</p>
+                </ion-label>
+                <ion-note item-right>
+                    {{ transaction.date | date: 'shortTime' }}
+                </ion-note>
+                <ion-note slot="end" class="arrow-icon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-note>
+            </ion-item>
+        </ion-list>
     </ion-list>
 </ion-content>

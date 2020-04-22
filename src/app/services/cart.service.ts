@@ -60,7 +60,7 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  getCart(): {} {
+  getCart(): any {
     return this.cart.items;
   }
 

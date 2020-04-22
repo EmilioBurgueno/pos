@@ -12,10 +12,9 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionsPage implements OnInit {
 
-  date = Date.now();
-
   item: Item;
-
+  test: number;
+  groupArrays: {key: string, value: string}[];
   transactions: Transaction[]
 
   constructor(private navCtrl: NavController,
@@ -33,12 +32,26 @@ export class TransactionsPage implements OnInit {
   getTrans() {
     this.transactionService.getTransactions().subscribe(transacs => {
       this.transactions = transacs;
+      
+      const groups = this.transactions.reduce((groups, trans) => {
+        const date  = new Date(trans.date).toDateString();
+        if(!groups[date]) {
+          groups[date] = [];
+        }
+        groups[date].push(trans);
+        return groups;
+      }, {});
+
+      this.groupArrays = Object.keys(groups).map((date) => {
+        return {
+          key: date,
+          value: groups[date]
+        };
+      });
+
+      console.log(this.groupArrays);
     });
+    
   }
   
-  groupTransactions(transactions: Transaction) {
-    this.transactionService.groupTransactions(transactions);
-  }
-  
-  //sortedDates = this.transactions.slice().sort((a, b) => b.date - a.date)
 }

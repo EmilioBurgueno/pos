@@ -33,6 +33,7 @@ export class TransactionService {
       map(doc => {
         const trans = doc.payload.data() as any;
         const id = doc.payload.id;
+        
         return { id, ...trans } as Transaction;
       })
     );
