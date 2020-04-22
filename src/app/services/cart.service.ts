@@ -54,8 +54,9 @@ export class CartService {
   }
 
   addTip(ctip: number) {
-    this.cart.tips = ctip;
-    this.cart.total += ctip;
+    const price = Number(ctip);
+    this.cart.tips = price;
+    this.cart.total += price;
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 

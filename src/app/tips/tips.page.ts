@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
+import { CartService } from '../services/cart.service';
+import { TransactionService } from '../services/transaction.service';
 
 @Component({
   selector: 'app-tips',
@@ -9,7 +11,9 @@ import { AlertController, NavController } from '@ionic/angular';
 export class TipsPage implements OnInit {
 
   constructor(private alertCtrl: AlertController,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              private cartService: CartService,
+              private transService: TransactionService) { }
 
   totalValue = JSON.parse(localStorage.getItem('cart')).total;
   Tip20 = this.totalValue * 0.20
@@ -23,6 +27,7 @@ export class TipsPage implements OnInit {
   async customTipAlert() {
     let alert = await this.alertCtrl.create({
       header: 'Add your tip!',
+      message: '',
       inputs: [
         {
           name: 'tip',
@@ -44,8 +49,9 @@ export class TipsPage implements OnInit {
           handler: data => {
             if (data.tip > 0) {
               console.log('Tip added');
-              this.navCtrl.navigateRoot(['menu', 'co-done'])
+              this.addTip(data.tip)
             } else {
+              alert.message = "You need to input a tip above $0.00 USD"
               return false
             }
           }
@@ -55,7 +61,21 @@ export class TipsPage implements OnInit {
     await alert.present();
   }
 
-  addTip() {
-    this.navCtrl.navigateForward(['menu', 'co-done'])
+  addTip(tip: number) {
+    this.cartService.addTip(tip);
+    const ls = JSON.parse(localStorage.getItem('cart'))
+    const trans = {
+      customEntries: ls.customEntries,
+      items: ls.items,
+      totalQuantity: ls.totalQuantity,
+      subtotal: ls.subtotal,
+      tax: ls.tax,
+      tips: ls.tips,
+      total: ls.total,
+      date: Date.now()
+    }
+    this.transService.createTransaction(trans)
+    this.cartService.setCart();
+    this.navCtrl.navigateRoot(['menu', 'co-done']);
   }
 }

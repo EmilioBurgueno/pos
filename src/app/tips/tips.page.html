@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="secondary" class="buttons-last-slot">
-            <ion-button (click)="goToCoDone()">
+            <ion-button (click)="addTip(0)">
                 <ion-icon name="close-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -22,17 +22,17 @@
 
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="addTip()">20% ({{ Tip20 | currency }})</ion-button>
+                <ion-button expand="block" fill="solid" (click)="addTip(Tip20)">20% ({{ Tip20 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">15% ({{ Tip15 | currency }})</ion-button>
+                <ion-button expand="block" fill="solid" (click)="addTip(Tip20)">15% ({{ Tip15 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">10% ({{ Tip10 | currency }})</ion-button>
+                <ion-button expand="block" fill="solid" (click)="addTip(Tip20)">10% ({{ Tip10 | currency }})</ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -42,7 +42,7 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="solid" (click)="goToCoDone()">No Tip</ion-button>
+                <ion-button expand="block" fill="solid" (click)="addTip(0)">No Tip</ion-button>
             </ion-col>
         </ion-row>
 

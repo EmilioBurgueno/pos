@@ -14,8 +14,8 @@
         </ion-list-header>
         <ion-item (click)="goToDesc(transaction.id)">
             <ion-label>
-                <h2>$65.25</h2>
-                <p>2 items</p>
+                <h2>{{ transaction.total | currency }}</h2>
+                <p>{{ transaction.totalQuantity }} items</p>
             </ion-label>
             <ion-note item-right>
                 {{ time }}

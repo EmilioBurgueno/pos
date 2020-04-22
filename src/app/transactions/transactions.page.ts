@@ -16,51 +16,14 @@ export class TransactionsPage implements OnInit {
 
   item: Item;
 
-  transactions: Transaction[] = [
-    {
-      id: '001',
-      customEntries: [],
-      items: [
-        {
-          id: '002',
-          name: 'Test',
-          price: 10,
-          status: 'available'
-        }
-      ],
-      totalQuantity: 1,
-      subtotal: 10,
-      tax: 1.25,
-      tips: 0,
-      total: 11.25,
-      date: this.date
-    },
-    {
-      id: '001',
-      customEntries: [],
-      items: [
-        {
-          id: '002',
-          name: 'Test',
-          price: 10,
-          status: 'available'
-        }
-      ],
-      totalQuantity: 1,
-      subtotal: 10,
-      tax: 1.25,
-      tips: 0,
-      total: 11.25,
-      date: this.date
-    }
-  ];
+  transactions: Transaction[]
 
   constructor(private navCtrl: NavController,
               private transactionService: TransactionService,
               private datePipe: DatePipe) { }
 
   ngOnInit() {
-    
+    this.getTrans()
   }
 
   goToDesc(transId: String) {

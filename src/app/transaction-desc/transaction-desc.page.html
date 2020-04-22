@@ -20,7 +20,7 @@
             <ion-label>Registered at {{ time }}</ion-label>
         </ion-item>
 
-        <ion-item *ngFor="let item of transaction.items">
+        <!-- <ion-item *ngFor="let item of transaction.items">
             <slot name="start">
                 <ion-avatar>
                     {{ item?.name | slice:0:2 }}
@@ -30,7 +30,7 @@
                 <h2>{{ item?.name }} (x20)</h2>
             </ion-label>
             <ion-note slot="end">{{ item?.price | currency }}</ion-note>
-        </ion-item>
+        </ion-item> -->
 
 
         <ion-item>
