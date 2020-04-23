@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -11,24 +11,39 @@ import { CartService } from '../services/cart.service';
 export class ChargePage implements OnInit {
 
   constructor(private navCtrl: NavController,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private loadingController: LoadingController) { }
 
 
   totalValue = JSON.parse(localStorage.getItem('cart')).total;
   subtotalValue = JSON.parse(localStorage.getItem('cart')).subtotal;
   taxValue = JSON.parse(localStorage.getItem('cart')).tax;
+  ;
   items: any;
+  CEs: Object[];
 
   ngOnInit() {
-    this.getCItems()
+    this.getCItems();
+  }
+
+  async confirmPayment() {
+    const loading = await this.loadingController.create({
+      message: 'Processing Payment...',
+      duration: 3000
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
+    this.navCtrl.navigateRoot(['menu', 'tips']);
+    console.log('Loading dismissed!');
   }
 
   getCItems() {
     this.items = Object.entries(this.cartService.getCart());
+    this.getCEs();
   }
 
-  confirmPayment(){
-    this.navCtrl.navigateRoot(['menu', 'tips'])
+  getCEs() {
+    this.CEs = JSON.parse(localStorage.getItem('cart')).customEntries;
   }
 
 }

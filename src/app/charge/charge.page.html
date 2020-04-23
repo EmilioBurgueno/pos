@@ -21,6 +21,19 @@
             </ion-label>
             <ion-note slot="end">{{ item[1].price | currency }}</ion-note>
         </ion-item>
+
+        <ion-item *ngFor="let ce of CEs">
+            <slot name="start">
+                <ion-avatar>
+                    {{ ce.name | slice:0:2 }}
+                </ion-avatar>
+            </slot>
+            <ion-label class="itemsep">
+                <h2>{{ ce.name }}</h2>
+            </ion-label>
+            <ion-note slot="end">{{ ce.price | currency }}</ion-note>
+        </ion-item>
+
         <ion-item>
             <ion-label>Subtotal</ion-label>
             <ion-note slot="end">{{ subtotalValue | currency }}</ion-note>
@@ -31,7 +44,7 @@
         </ion-item>
         <ion-item>
             <ion-label><b>Total</b></ion-label>
-            <ion-note slot="end">{{ totalValue | currency }}</ion-note>
+            <ion-note color="dark" slot="end"><b>{{ totalValue | currency }}</b></ion-note>
         </ion-item>
     </ion-list>
 

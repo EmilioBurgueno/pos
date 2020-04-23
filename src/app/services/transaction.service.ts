@@ -33,22 +33,9 @@ export class TransactionService {
       map(doc => {
         const trans = doc.payload.data() as any;
         const id = doc.payload.id;
-        
+
         return { id, ...trans } as Transaction;
       })
     );
-  }
-
-  groupTransactions(transactionList: Transaction) {
-    const groups = transactionList;
-    this.group = this.transaction.date[transactionList.id];
-    if(!this.group) {
-      this.group = {
-        key: this.transaction.date,
-        value: this.transaction
-      };
-
-      this.transaction.date[transactionList.id]= this.group;
-    }
   }
 }

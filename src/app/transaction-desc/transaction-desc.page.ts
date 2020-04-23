@@ -15,7 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 export class TransactionDescPage implements OnInit {
 
   transaction: Transaction;
-  items: any
+  items: any;
+  CEs: Object[];
 
   constructor(private transactionService: TransactionService,
               private activatedRoute: ActivatedRoute) { }
@@ -29,13 +30,16 @@ export class TransactionDescPage implements OnInit {
   getTrans(transId: string) {
     this.transactionService.getTransaction(transId).subscribe((trans) => {
       this.transaction = trans;
-      this.getCItems()
+      this.getCItems();
+      this.getCEs();
     })
   }
 
   getCItems() {
-    console.log(this.transaction)
     this.items = Object.entries(this.transaction.items);
-    console.log(this.items)
+  }
+
+  getCEs() {
+    this.CEs = this.transaction.customEntries;
   }
 }

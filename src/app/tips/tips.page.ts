@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { CartService } from '../services/cart.service';
 import { TransactionService } from '../services/transaction.service';
 
@@ -12,6 +12,7 @@ export class TipsPage implements OnInit {
 
   constructor(private alertCtrl: AlertController,
               private navCtrl: NavController,
+              private loadingController: LoadingController,
               private cartService: CartService,
               private transService: TransactionService) { }
 
@@ -61,6 +62,17 @@ export class TipsPage implements OnInit {
     await alert.present();
   }
 
+  async confirmTip() {
+    const loading = await this.loadingController.create({
+      message: 'Processing Tip...',
+      duration: 3000
+    });
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
+    this.navCtrl.navigateRoot(['menu', 'co-done']);
+    console.log('Loading dismissed!');
+  }
+
   addTip(tip: number) {
     this.cartService.addTip(tip);
     const ls = JSON.parse(localStorage.getItem('cart'))
@@ -74,8 +86,8 @@ export class TipsPage implements OnInit {
       total: ls.total,
       date: Date.now()
     }
+    this.confirmTip();
     this.transService.createTransaction(trans)
     this.cartService.setCart();
-    this.navCtrl.navigateRoot(['menu', 'co-done']);
   }
 }

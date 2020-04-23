@@ -42,13 +42,17 @@ export class TransactionsPage implements OnInit {
         return groups;
       }, {});
 
+
       this.groupArrays = Object.keys(groups).map((date) => {
         return {
           key: date,
           value: groups[date]
         };
       });
-
+      this.groupArrays.sort(function(a, b) {
+        var dateA: any = new Date(a.key), dateB: any = new Date(b.key);
+        return dateB - dateA;
+      });
       console.log(this.groupArrays);
     });
     
