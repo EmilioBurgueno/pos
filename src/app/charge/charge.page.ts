@@ -34,7 +34,6 @@ export class ChargePage implements OnInit {
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
     this.navCtrl.navigateRoot(['menu', 'tips']);
-    console.log('Loading dismissed!');
   }
 
   getCItems() {

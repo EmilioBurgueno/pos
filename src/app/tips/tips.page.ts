@@ -42,14 +42,13 @@ export class TipsPage implements OnInit {
           text: 'CANCEL',
           role: 'cancel',
           handler: data => {
-            console.log('Tip canceled');
           }
         },
         {
           text: 'OK',
           handler: data => {
             if (data.tip > 0) {
-              console.log('Tip added');
+              
               this.addTip(data.tip)
             } else {
               alert.message = "You need to input a tip above $0.00 USD"
@@ -70,7 +69,6 @@ export class TipsPage implements OnInit {
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
     this.navCtrl.navigateRoot(['menu', 'co-done']);
-    console.log('Loading dismissed!');
   }
 
   addTip(tip: number) {

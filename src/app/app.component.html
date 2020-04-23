@@ -9,13 +9,15 @@
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-                            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                            <ion-label>{{ p.title }}</ion-label>
-                            <ion-note slot="end" class="arrow-icon">
-                                <ion-icon name="chevron-forward-outline"></ion-icon>
-                            </ion-note>
-                        </ion-item>
+                        <div (click)="selectedIndex = i">
+                            <ion-item (click)="logout()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+                                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                                <ion-label>{{ p.title }}</ion-label>
+                                <ion-note slot="end" class="arrow-icon" *ngIf="p.arrow == true">
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </ion-note>
+                            </ion-item>
+                        </div>
                     </ion-menu-toggle>
                 </ion-list>
             </ion-content>

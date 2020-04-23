@@ -53,7 +53,7 @@ export class TransactionsPage implements OnInit {
         var dateA: any = new Date(a.key), dateB: any = new Date(b.key);
         return dateB - dateA;
       });
-      console.log(this.groupArrays);
+      
     });
     
   }
